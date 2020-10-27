@@ -301,7 +301,7 @@ return function (App $app) {
         $r = [$str[0]];
         $num = 1;
         for ($i=0; $i < $jml - 1; $i++) {
-          $num = $num + 3;
+          $num = $num + $k;
           if ($num > $jml) {
             $num = $num - $jml;
           }
