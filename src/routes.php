@@ -289,4 +289,30 @@ return function (App $app) {
            return $response->withJson(["status" => "success", "data" => "1"], 200);
         return $response->withJson(["status" => "failed", "data" => "0"], 200);
     });
+
+    $app->post("/enkrip", function (Request $request, Response $response, $args){
+        $body = $request->getParsedBody();
+        $str = $body['string'];
+        $k = $body['k'];
+        $arr_str = str_split($str);
+        $res = [$arr_str[0]];
+        $counter = 0;
+        $jml = count($arr_str);
+        $r = [$str[0]];
+        $num = 1;
+        for ($i=0; $i < $jml - 1; $i++) {
+          $num = $num + 3;
+          if ($num > $jml) {
+            $num = $num - $jml;
+          }
+          if (in_array($arr_str[$num - 1], $r)) {
+            // $num = $num + 1;
+            $r[] = $arr_str[$num - 1];
+          } else {
+            $r[] = $arr_str[$num - 1];
+          }
+          // $r[] = $arr_str[$num - 1];
+        }
+        return $response->withJson((implode(" ",$r)));
+    });
 };
