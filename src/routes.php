@@ -7,11 +7,6 @@ use Slim\Http\Response;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->get('/[{name}]', function (Request $request, Response $response, array $args) use ($container) {
-        $container->get('logger')->info("Slim-Skeleton '/' route");
-        return $container->get('renderer')->render($response, 'index.phtml', $args);
-    });
-
     $app->post("/getListUser", function (Request $request, Response $response){
         $sql  = "SELECT * FROM user";
         $stmt = $this->db->prepare($sql);
